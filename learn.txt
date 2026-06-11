@@ -1,0 +1,108 @@
+To Learn:
+    1. Docker basics
+    2. Dockerfile
+    3. Docker Compose
+
+    4. Linux commands
+    5. Volumes
+    6. Networks
+
+    7. MariaDB
+    8. WordPress + PHP-FPM
+    9. NGINX + SSL
+
+
+---
+
+About:
+    - build a small website infrastructure using Docker Compose. 
+
+    - It has 3 required containers:
+        - NGINX                 = front door, HTTPS only on port 443
+        - WordPress + PHP-FPM   = website app
+        - MariaDB               = database
+
+    - You must build the images yourself with Dockerfiles, not pull ready-made service images. 
+    - Alpine/Debian base images are allowed.
+
+---
+
+Main goal:
+    - When I open   https://yourlogin.42.fr
+
+    - I should see a working WordPress website.
+
+    - And behind the scenes:
+        Browser
+            │ HTTPS (443)
+            ▼
+        NGINX Container
+            │
+            ▼
+        WordPress + PHP-FPM Container
+            │
+            ▼
+        MariaDB Container
+
+    - Everything runs inside Docker containers connected by a Docker network.
+
+---
+
+    Build your own mini hosting server
+
+    Internet
+        ↓
+    NGINX (secure entrance)
+        ↓
+    WordPress (website)
+        ↓
+    MariaDB (storage)
+
+---
+
+folder structure
+    inception/
+    │
+    ├── Makefile
+    ├── README.md
+    │
+    ├── secrets/
+    │   ├── db_root_password.txt
+    │   ├── db_password.txt
+    │   └── credentials.txt
+    │
+    └── srcs/
+        ├── .env
+        ├── docker-compose.yml
+        │
+        └── requirements/
+            │
+            ├── mariadb/
+            │   ├── Dockerfile
+            │   ├── .dockerignore
+            │   │
+            │   ├── conf/
+            │   │   └── mariadb.cnf
+            │   │
+            │   └── tools/
+            │       └── setup.sh
+            │
+            ├── wordpress/
+            │   ├── Dockerfile
+            │   ├── .dockerignore
+            │   │
+            │   ├── conf/
+            │   │   └── www.conf
+            │   │
+            │   └── tools/
+            │       └── setup.sh
+            │
+            └── nginx/
+                ├── Dockerfile
+                ├── .dockerignore
+                │
+                ├── conf/
+                │   └── nginx.conf
+                │
+                └── tools/
+                    └── setup.sh
