@@ -1,8 +1,8 @@
 *This project has been created as part of the 42 curriculum by nchairun.*
 
-<p align="center">
+<!-- <p align="center">
   <img src="https://www.docker.com/app/uploads/2022/03/Moby-logo.png" width="85" alt="Docker"/>
-</p>
+</p> -->
 
 <h1 align="center">
   Inception

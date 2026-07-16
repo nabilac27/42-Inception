@@ -1,3 +1,23 @@
+services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+
+
 # Each service then has its own Dockerfile:
 
 # docker-compose.yml
@@ -28,22 +48,3 @@
 #   nginx:
 #     image: nginx
 #     build: ./requirements/nginx
-
-services:
-  mariadb:
-    image: mariadb
-    container_name: mariadb
-    build:
-      context: ./requirements/mariadb
-
-  wordpress:
-    image: wordpress
-    container_name: wordpress
-    build:
-      context: ./requirements/wordpress
-
-  nginx:
-    image: nginx
-    container_name: nginx
-    build:
-      context: ./requirements/nginx
