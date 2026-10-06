@@ -18,4 +18,20 @@ FROM debian:12
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends mariadb-server && \
-	rm -rf /var/lib/apt/lists/*
+	rm -rf /var/lib/apt/lists/* && \
+	mkdir -p /run/mysqld && \
+	chown mysql:mysql /run/mysqld
+
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+USER mysql
+
+CMD ["mariadbd"]
+
+# Docker container
+#       │
+#       ├── root        ❌ don't run MariaDB as this
+#       │
+#       └── mysql       ✅
+#            │
+#            └── mariadbd
